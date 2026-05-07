@@ -24,18 +24,45 @@ class _SlotMachineState
   var _slot3 = 'assets/images/seven.png';
   var _message = '';
 
-  void _spin() {
+  void _reset() {
     setState(() {
-      _slot1 = _symbols[_random.nextInt(_symbols.length)];
-      _slot2 = _symbols[_random.nextInt(_symbols.length)];
-      _slot3 = _symbols[_random.nextInt(_symbols.length)];
+      _coins = 10;
+      _slot1 = 'assets/images/cherry.png';
+      _slot2 = 'assets/images/lemon.png';
+      _slot3 = 'assets/images/seven.png';
+      _message = '';
+    });
+  }
+
+  void _spin() {
+    if (_coins <= 0) {
+      setState(() {
+        _message = "Монеты закончились! 🤬";
+      });
+      return;
+    }
+
+    setState(() {
+      _slot1 =
+          _symbols[_random.nextInt(
+            _symbols.length,
+          )];
+      _slot2 =
+          _symbols[_random.nextInt(
+            _symbols.length,
+          )];
+      _slot3 =
+          _symbols[_random.nextInt(
+            _symbols.length,
+          )];
 
       if (_slot1 == _slot2 && _slot2 == _slot3) {
         _coins += 3;
         _message = 'Победа! 🎆 +3 монеты';
       } else {
         _coins -= 1;
-        _message = "Попробуй еще раз 😭 -1 монета";
+        _message =
+            "Попробуй еще раз 😭 -1 монета";
       }
     });
   }
@@ -43,7 +70,7 @@ class _SlotMachineState
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment:  MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           '💴 Монеты: $_coins',
@@ -55,13 +82,26 @@ class _SlotMachineState
         ),
         SizedBox(height: 30),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment:
+              MainAxisAlignment.center,
           children: [
-            Image.asset(_slot1, width: 100, height: 100),
+            Image.asset(
+              _slot1,
+              width: 100,
+              height: 100,
+            ),
             SizedBox(width: 16),
-            Image.asset(_slot2, width: 100, height: 100),
+            Image.asset(
+              _slot2,
+              width: 100,
+              height: 100,
+            ),
             SizedBox(width: 16),
-            Image.asset(_slot3, width: 100, height: 100),
+            Image.asset(
+              _slot3,
+              width: 100,
+              height: 100,
+            ),
           ],
         ),
         SizedBox(height: 24),
@@ -74,7 +114,7 @@ class _SlotMachineState
         ),
         SizedBox(height: 40),
         ElevatedButton(
-          onPressed: _spin,
+          onPressed: _coins > 0 ? _spin : null,
           style: ElevatedButton.styleFrom(
             backgroundColor: Colors.amber,
             padding: EdgeInsets.symmetric(
@@ -91,9 +131,18 @@ class _SlotMachineState
             ),
           ),
         ),
+        SizedBox(height: 12),
+        TextButton(
+          onPressed: _reset,
+          child: Text(
+            'Начать заново',
+            style: TextStyle(
+              color: Colors.white70,
+              fontSize: 16,
+            ),
+          ),
+        ),
       ],
     );
   }
-
-
 }
