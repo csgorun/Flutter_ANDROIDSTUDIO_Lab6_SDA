@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'package:slot_machine/slot_row.dart';
 
 class SlotMachine extends StatefulWidget {
   const SlotMachine({super.key});
@@ -81,28 +82,10 @@ class _SlotMachineState
           ),
         ),
         SizedBox(height: 30),
-        Row(
-          mainAxisAlignment:
-              MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              _slot1,
-              width: 100,
-              height: 100,
-            ),
-            SizedBox(width: 16),
-            Image.asset(
-              _slot2,
-              width: 100,
-              height: 100,
-            ),
-            SizedBox(width: 16),
-            Image.asset(
-              _slot3,
-              width: 100,
-              height: 100,
-            ),
-          ],
+        SlotRow(
+          slot1: _slot1,
+          slot2: _slot2,
+          slot3: _slot3,
         ),
         SizedBox(height: 24),
         Text(
