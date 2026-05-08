@@ -11,7 +11,7 @@ class LanguageWidget extends StatelessWidget {
         Icon(Icons.code, color: Colors.amber, size: 24),
         SizedBox(width: 8),
         Text(
-          'Любимый язык: Dart',
+          'Любимые языки: Java, Rust, C#',
           style: TextStyle(
             fontSize: 18,
             color: Colors.white70,
