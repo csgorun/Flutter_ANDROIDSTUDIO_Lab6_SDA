@@ -13,7 +13,7 @@ class GroupWidget extends StatelessWidget {
         border: Border.all(color: Colors.white24, width: 1.5),
       ),
       child: Text(
-        'Группа: ИВТ-201',
+        'Группа: ИСП-232',
         style: TextStyle(
           fontSize: 20,
           color: Colors.white,
